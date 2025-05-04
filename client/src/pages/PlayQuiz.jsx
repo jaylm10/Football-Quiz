@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import AppLayout from "../components/AppLayout";
 import "./PlayQuiz.css";
 
@@ -12,9 +12,9 @@ function PlayQuiz() {
         </section>
         
         <div className="quiz-content">
-          {/* <div className="quiz-image-container">
+          <div className="quiz-image-container">
             <img 
-              src="https://images.unsplash.com/photo-1508098682722-e99c643e7f0b?q=80&w=2070&auto=format&fit=crop" 
+              src="https://www.livemint.com/lm-img/img/2025/04/27/original/the-ball-stadion-football-the-pitch-46798_1745749650462.jpeg" 
               alt="Football stadium" 
               className="quiz-image"
             />
@@ -24,10 +24,19 @@ function PlayQuiz() {
                 <p>Challenge yourself with questions about players, teams, history, and more</p>
               </div>
             </div>
-          </div> */}
+          </div>
           
           <div className="quiz-options">
-            <Link to="/join-lobby" className="quiz-option-card public-lobby">
+            <Link to="username" state={{source:'solo'}} className="quiz-option-card public-lobby">
+              <div className="option-icon-wrapper">
+                <i className="ri-group-line option-icon"></i>
+              </div>
+              <div className="option-content">
+                <h3 className="option-title">Play against Computer</h3>
+                <p className="option-description">Play with other football fans in a public quiz session</p>
+              </div>
+            </Link>
+            <Link to="username" state={{source:'public'}} className="quiz-option-card public-lobby">
               <div className="option-icon-wrapper">
                 <i className="ri-group-line option-icon"></i>
               </div>
@@ -37,7 +46,7 @@ function PlayQuiz() {
               </div>
             </Link>
             
-            <Link to="/join-lobby?private=true" className="quiz-option-card private-join">
+            <Link to="username" state={{source:'private'}} className="quiz-option-card private-join">
               <div className="option-icon-wrapper">
                 <i className="ri-door-lock-line option-icon"></i>
               </div>
@@ -47,7 +56,7 @@ function PlayQuiz() {
               </div>
             </Link>
             
-            <Link to="/create-lobby" className="quiz-option-card private-create">
+            <Link to="username" state={{source:'create-private'}} className="quiz-option-card private-create">
               <div className="option-icon-wrapper">
                 <i className="ri-add-circle-line option-icon"></i>
               </div>
@@ -58,6 +67,7 @@ function PlayQuiz() {
             </Link>
           </div>
         </div>
+        <Outlet/>
       </div>
     </AppLayout>
   );
