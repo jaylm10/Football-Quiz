@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, use } from 'react';
 import {useLocation,useNavigate} from 'react-router-dom'
 import './UsernameEntry.css';
 import UserContext from '../../contexts/UserContext';
@@ -6,6 +6,7 @@ import UserContext from '../../contexts/UserContext';
 const UsernameEntry = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(null); 
+  const [joinCode,setJoinCode] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -42,6 +43,14 @@ const UsernameEntry = () => {
             maxLength={15}
           />
           {error && <p className="error-message">{error}</p>}
+
+          {source=='private' && <input
+             type='text'
+             value={joinCode}
+             onChange={(e)=>setJoinCode(e.target.value)}
+             placeholder='Lobby Code'
+             /> }
+          
           <button type="submit">Continue</button>
         </form>
       </div>
